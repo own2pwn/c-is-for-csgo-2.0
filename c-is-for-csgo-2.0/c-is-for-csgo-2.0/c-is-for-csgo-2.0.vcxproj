@@ -112,11 +112,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DllMain.c" />
-    <ClCompile Include="VirtualTableHook.c" />
+    <ClCompile Include="src\DllMain.c" />
+    <ClCompile Include="src\VirtualTableHook.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VirtualTableHook.h" />
+    <ClInclude Include="src\VirtualTableHook.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

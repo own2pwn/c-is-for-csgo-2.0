@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="VirtualTableHook.c">
+    <ClCompile Include="src\DllMain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DllMain.c">
+    <ClCompile Include="src\VirtualTableHook.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VirtualTableHook.h">
+    <ClInclude Include="src\VirtualTableHook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
