@@ -1,5 +1,5 @@
 #include "Surface.h"
-#include "Interfaces.h"
+#include "Interface.h"
 
 void *GetSurface(void)
 {

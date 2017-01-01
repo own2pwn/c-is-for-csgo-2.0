@@ -1,6 +1,5 @@
 #pragma once
 #include <Windows.h>
-#define CREATEINTERFACE_PROCNAME "CreateInterface"
 
 /*
  * @brief: Creates a Source Engine interface

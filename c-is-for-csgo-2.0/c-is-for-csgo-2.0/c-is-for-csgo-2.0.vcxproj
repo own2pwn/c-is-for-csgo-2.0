@@ -113,13 +113,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\DllMain.c" />
-    <ClCompile Include="src\source-engine\Interfaces.c" />
-    <ClCompile Include="src\source-engine\Panel.cpp" />
+    <ClCompile Include="src\source-engine\Interface.c" />
+    <ClCompile Include="src\source-engine\Panel.c" />
     <ClCompile Include="src\source-engine\Surface.c" />
     <ClCompile Include="src\VirtualTableHook.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\source-engine\Interfaces.h" />
+    <ClInclude Include="src\source-engine\Interface.h" />
     <ClInclude Include="src\source-engine\Panel.h" />
     <ClInclude Include="src\source-engine\Surface.h" />
     <ClInclude Include="src\VirtualTableHook.h" />

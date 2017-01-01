@@ -1,11 +1,11 @@
-#include "Interfaces.h"
+#include "Interface.h"
 
 void *CreateInterface(const char *moduleName, const char *interfaceName)
 {
 	typedef void*(*CreateInterfaceFn)(const char*, int*);
 
 	HMODULE module = GetModuleHandle(moduleName);
-	FARPROC proc = GetProcAddress(module, CREATEINTERFACE_PROCNAME);
+	FARPROC proc = GetProcAddress(module, "CreateInterface");
 	CreateInterfaceFn factory = (CreateInterfaceFn)proc;
 	return factory(interfaceName, NULL);
 }

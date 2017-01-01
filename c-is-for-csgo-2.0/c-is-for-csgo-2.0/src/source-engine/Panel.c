@@ -1,5 +1,5 @@
 #include "Panel.h"
-#include "Interfaces.h"
+#include "Interface.h"
 #include <Windows.h>
 
 void *GetPanel()

@@ -24,10 +24,10 @@
     <ClCompile Include="src\source-engine\Surface.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\source-engine\Interfaces.c">
+    <ClCompile Include="src\source-engine\Interface.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\source-engine\Panel.cpp">
+    <ClCompile Include="src\source-engine\Panel.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +38,10 @@
     <ClInclude Include="src\source-engine\Surface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\source-engine\Interfaces.h">
+    <ClInclude Include="src\source-engine\Panel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\source-engine\Panel.h">
+    <ClInclude Include="src\source-engine\Interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
