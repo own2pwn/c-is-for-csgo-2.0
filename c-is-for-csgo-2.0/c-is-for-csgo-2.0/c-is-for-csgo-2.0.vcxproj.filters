@@ -21,9 +21,27 @@
     <ClCompile Include="src\VirtualTableHook.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\source-engine\Surface.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source-engine\Interfaces.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source-engine\Panel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\VirtualTableHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source-engine\Surface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source-engine\Interfaces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source-engine\Panel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
