@@ -1,3 +1,8 @@
+/* ===============================================
+   Creator: Szwagi
+   Notice: Copyright (C) 2017. All Rights Reserved.
+   =============================================== */
+   
 #include "VirtualTableHook.h"
 #include "source-engine/Surface.h"
 #include "source-engine/Panel.h"

@@ -1,3 +1,8 @@
+/* ===============================================
+   Creator: Szwagi
+   Notice: Copyright (C) 2017. All Rights Reserved.
+   =============================================== */
+   
 #pragma once
 #include <Windows.h>
 

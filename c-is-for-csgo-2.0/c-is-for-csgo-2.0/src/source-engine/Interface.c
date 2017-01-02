@@ -1,3 +1,8 @@
+/* ===============================================
+   Creator: Szwagi
+   Notice: Copyright (C) 2017. All Rights Reserved.
+   =============================================== */
+   
 #include "Interface.h"
 
 void *CreateInterface(const char *moduleName, const char *interfaceName)

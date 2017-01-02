@@ -32,9 +32,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\VirtualTableHook.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\source-engine\Surface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -44,5 +41,11 @@
     <ClInclude Include="src\source-engine\Interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\VirtualTableHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="c-is-for-csgo-2.0.licenseheader" />
   </ItemGroup>
 </Project>

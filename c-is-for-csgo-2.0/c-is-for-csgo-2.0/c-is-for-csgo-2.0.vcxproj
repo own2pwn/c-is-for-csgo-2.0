@@ -124,6 +124,9 @@
     <ClInclude Include="src\source-engine\Surface.h" />
     <ClInclude Include="src\VirtualTableHook.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="c-is-for-csgo-2.0.licenseheader" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
