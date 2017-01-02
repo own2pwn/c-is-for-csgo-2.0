@@ -23,8 +23,7 @@ void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL f
         drawPanel = vguiPanel;
 	}
 	else if (vguiPanel == drawPanel) {
-		Surface_DrawSetColor(255, 0, 0, 255);
-		Surface_DrawFilledRect(10, 10, 50, 100);
+        
 	}
 }
 
@@ -57,7 +56,7 @@ BOOL WINAPI DllMain(HINSTANCE instance, DWORD reason, LPVOID reserved)
 	case DLL_PROCESS_ATTACH:
     {
 		AllocConsole();
-        
+
 		FILE* stream;
 		freopen_s(&stream, "CONOUT$", "w", stdout);
 

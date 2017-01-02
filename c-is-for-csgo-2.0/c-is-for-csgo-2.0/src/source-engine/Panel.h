@@ -4,13 +4,14 @@
    =============================================== */
    
 #pragma once
+#include "Interface.h"
 
 typedef unsigned int VPANEL;
 
 /*
  * @return: Pointer to Source Engine Panel interface
  */
-extern void *GetPanel();
+extern HInterface GetPanel(void);
 
 /*
  * @return: Name of the given panel

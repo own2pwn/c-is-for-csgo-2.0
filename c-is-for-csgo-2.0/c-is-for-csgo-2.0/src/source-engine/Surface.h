@@ -4,6 +4,7 @@
    =============================================== */
    
 #pragma once
+#include "Interface.h"
 #include <Windows.h>
 
 #ifdef CreateFont
@@ -38,7 +39,7 @@ typedef enum {
 /*
 * @return: Pointer to Source Engine Surface interface
 */
-extern void *GetSurface(void);
+extern HInterface GetSurface(void);
 
 /*
  * @brief: Sets draw color, does not affect text

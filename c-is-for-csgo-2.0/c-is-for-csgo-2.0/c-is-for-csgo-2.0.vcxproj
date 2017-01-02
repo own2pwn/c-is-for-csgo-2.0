@@ -113,12 +113,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\DllMain.c" />
+    <ClCompile Include="src\source-engine\EntityList.c" />
     <ClCompile Include="src\source-engine\Interface.c" />
     <ClCompile Include="src\source-engine\Panel.c" />
     <ClCompile Include="src\source-engine\Surface.c" />
     <ClCompile Include="src\VirtualTableHook.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\source-engine\EntityList.h" />
     <ClInclude Include="src\source-engine\Interface.h" />
     <ClInclude Include="src\source-engine\Panel.h" />
     <ClInclude Include="src\source-engine\Surface.h" />

@@ -2,27 +2,26 @@
    Creator: Szwagi
    Notice: Copyright (C) 2017. All Rights Reserved.
    =============================================== */
-   
+
 #include "Panel.h"
-#include "Interface.h"
 #include <Windows.h>
 
-void *GetPanel()
+HInterface GetPanel(void)
 {
-	static void *panel = NULL;
+    static HInterface panel = NULL;
     if (!panel) {
         panel = CreateInterface("vgui2.dll", "VGUI_Panel009");
     }
 
-	return panel;
+    return panel;
 }
 
 const char *Panel_GetName(VPANEL vpanel)
 {
-	typedef const char*(__fastcall *GetNameFn)(void*, void*, VPANEL);
+    typedef const char*(__fastcall *GetNameFn)(HInterface, void*, VPANEL);
 
-	void *panel = GetPanel();
+    HInterface panel = GetPanel();
 
-	GetNameFn getName = GetVirtualFunction(panel, 36);
-	return getName(panel, NULL, vpanel);
+    GetNameFn getName = GetVirtualFunction(panel, 36);
+    return getName(panel, NULL, vpanel);
 }

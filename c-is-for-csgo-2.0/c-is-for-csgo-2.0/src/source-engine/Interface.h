@@ -6,11 +6,13 @@
 #pragma once
 #include <Windows.h>
 
+typedef void* HInterface;
+
 /*
  * @brief: Creates a Source Engine interface
  * @return: Pointer to the created interface
  */
-extern void *CreateInterface(const char *moduleName, const char *interfaceName);
+extern HInterface CreateInterface(const char *moduleName, const char *interfaceName);
 
 /*
  * @brief: Given an index, gets address of a function from a vtable

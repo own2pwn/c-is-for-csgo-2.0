@@ -30,6 +30,9 @@
     <ClCompile Include="src\source-engine\Panel.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\source-engine\EntityList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\source-engine\Surface.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\VirtualTableHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source-engine\EntityList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
