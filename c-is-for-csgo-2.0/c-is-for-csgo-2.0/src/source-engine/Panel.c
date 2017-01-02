@@ -5,8 +5,9 @@
 void *GetPanel()
 {
 	static void *panel = NULL;
-	if (!panel)
-		panel = CreateInterface("vgui2.dll", "VGUI_Panel009");
+    if (!panel) {
+        panel = CreateInterface("vgui2.dll", "VGUI_Panel009");
+    }
 
 	return panel;
 }

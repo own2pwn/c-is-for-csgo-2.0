@@ -14,9 +14,8 @@ void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL f
 	OrigPaintTraverse(panel, edx, vguiPanel, forceRepaint, allowForce);
 
 	static VPANEL drawPanel = 0;
-	if (!drawPanel) {
-		if (strcmp(Panel_GetName(vguiPanel), "MatSystemTopPanel") == 0)
-			drawPanel = vguiPanel;
+	if (!drawPanel && strcmp(Panel_GetName(vguiPanel), "MatSystemTopPanel") == 0) {
+        drawPanel = vguiPanel;
 	}
 	else if (vguiPanel == drawPanel) {
 		Surface_DrawSetColor(255, 0, 0, 255);
@@ -51,8 +50,9 @@ BOOL WINAPI DllMain(HINSTANCE instance, DWORD reason, LPVOID reserved)
 {
 	switch(reason) {
 	case DLL_PROCESS_ATTACH:
-	{
+    {
 		AllocConsole();
+        
 		FILE* stream;
 		freopen_s(&stream, "CONOUT$", "w", stdout);
 

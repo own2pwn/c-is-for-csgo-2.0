@@ -4,8 +4,9 @@
 void *GetSurface(void)
 {
 	static void *surface = NULL;
-	if (!surface)
-		surface = CreateInterface("vguimatsurface", "VGUI_Surface031");
+    if (!surface) {
+        surface = CreateInterface("vguimatsurface", "VGUI_Surface031");
+    }
 
 	return surface;
 }

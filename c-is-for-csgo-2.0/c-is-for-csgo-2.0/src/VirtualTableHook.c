@@ -31,8 +31,9 @@ size_t GetVirtualTableLength(void **virtualTable)
 	size_t i = 0;
 	for (;; ++i) {
 		void* function = virtualTable[i];
-		if (!function || IsBadCodePtr(function))
-			break;
+        if (!function || IsBadCodePtr(function)) {
+            break;
+        }
 	}
 
 	return i;
@@ -75,8 +76,9 @@ void *HookVirtualTableFunction(void *abstractClass, size_t index, void *newFunct
 	void **originalVirtualTable = GetOriginalVirtualTable(abstractClass);
 	size_t originalTableLength = GetVirtualTableLength(originalVirtualTable);
 	
-	if (index > originalTableLength)
-		return NULL; // Out of range
+    if (index > originalTableLength) {
+        return NULL; // Out of range
+    }
 	
 	void **clonedVirtualTable = GetVirtualTable(abstractClass);
 	clonedVirtualTable[index] = newFunction;
