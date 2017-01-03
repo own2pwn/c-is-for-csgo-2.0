@@ -15,7 +15,7 @@ HInterface CreateInterface(const char *moduleName, const char *interfaceName)
 	return factory(interfaceName, NULL);
 }
 
-void *GetVirtualFunction(void *abstractClass, size_t index)
+inline void *GetVirtualFunction(void *abstractClass, size_t index)
 {
 	void **vtable = *(void***)abstractClass;
 	return vtable[index];

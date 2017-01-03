@@ -6,7 +6,7 @@
 #include "Panel.h"
 #include <Windows.h>
 
-HInterface GetPanel(void)
+inline HInterface GetPanel(void)
 {
     static HInterface panel = NULL;
     if (!panel) {

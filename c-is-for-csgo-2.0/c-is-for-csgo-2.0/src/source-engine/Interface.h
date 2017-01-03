@@ -18,4 +18,4 @@ extern HInterface CreateInterface(const char *moduleName, const char *interfaceN
  * @brief: Given an index, gets address of a function from a vtable
  * @return: Address of function at given index
  */
-extern void *GetVirtualFunction(void *abstractClass, size_t index);
+extern inline void *GetVirtualFunction(void *abstractClass, size_t index);

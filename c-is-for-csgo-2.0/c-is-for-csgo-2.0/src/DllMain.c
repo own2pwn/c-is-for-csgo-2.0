@@ -6,6 +6,7 @@
 #include "VirtualTableHook.h"
 #include "source-engine/Surface.h"
 #include "source-engine/Panel.h"
+#include "menu/Menu.h"
 #include <Windows.h>
 
 // Tests for now
@@ -23,7 +24,7 @@ void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL f
         drawPanel = vguiPanel;
 	}
 	else if (vguiPanel == drawPanel) {
-        
+        PaintMenu();
 	}
 }
 
@@ -31,6 +32,8 @@ void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL f
 
 void Attach(void)
 {
+    InitMenu();
+
 	InitVirtualTableHook(GetPanel());
 	OrigPaintTraverse = HookVirtualTableFunction(GetPanel(), 41, HkPaintTraverse);
 }
@@ -38,6 +41,8 @@ void Attach(void)
 void Detach(void)
 {
 	UninitVirtualTableHook(GetPanel());
+
+    UninitMenu();
 
 	FreeConsole();
 }

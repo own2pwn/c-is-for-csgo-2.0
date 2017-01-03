@@ -39,7 +39,7 @@ typedef enum {
 /*
 * @return: Pointer to Source Engine Surface interface
 */
-extern HInterface GetSurface(void);
+extern inline HInterface GetSurface(void);
 
 /*
  * @brief: Sets draw color, does not affect text

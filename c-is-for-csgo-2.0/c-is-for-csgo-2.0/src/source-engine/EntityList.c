@@ -6,7 +6,7 @@
 #include "EntityList.h"
 #include <Windows.h>
 
-HInterface GetEntityList(void)
+inline HInterface GetEntityList(void)
 {
     static HInterface entityList = NULL;
     if (!entityList) {

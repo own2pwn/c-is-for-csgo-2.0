@@ -19,19 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7CE2B2D1-9051-4DCE-BA0D-5453D4A2A106}</ProjectGuid>
-    <RootNamespace>cisforcsgo20</RootNamespace>
+    <ProjectGuid>{8DA16DF0-2C0E-46C9-9F44-BAB375E37A97}</ProjectGuid>
+    <RootNamespace>Project1</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -74,7 +74,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -91,7 +90,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -112,24 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\DllMain.c" />
-    <ClCompile Include="src\menu\Menu.c" />
-    <ClCompile Include="src\source-engine\EntityList.c" />
-    <ClCompile Include="src\source-engine\Interface.c" />
-    <ClCompile Include="src\source-engine\Panel.c" />
-    <ClCompile Include="src\source-engine\Surface.c" />
-    <ClCompile Include="src\VirtualTableHook.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\menu\Menu.h" />
-    <ClInclude Include="src\source-engine\EntityList.h" />
-    <ClInclude Include="src\source-engine\Interface.h" />
-    <ClInclude Include="src\source-engine\Panel.h" />
-    <ClInclude Include="src\source-engine\Surface.h" />
-    <ClInclude Include="src\VirtualTableHook.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="c-is-for-csgo-2.0.licenseheader" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

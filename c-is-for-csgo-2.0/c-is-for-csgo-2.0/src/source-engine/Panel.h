@@ -11,7 +11,7 @@ typedef unsigned int VPANEL;
 /*
  * @return: Pointer to Source Engine Panel interface
  */
-extern HInterface GetPanel(void);
+extern inline HInterface GetPanel(void);
 
 /*
  * @return: Name of the given panel

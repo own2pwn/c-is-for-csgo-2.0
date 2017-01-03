@@ -5,7 +5,7 @@
    
 #include "Surface.h"
 
-HInterface GetSurface(void)
+inline HInterface GetSurface(void)
 {
 	static HInterface surface = NULL;
     if (!surface) {

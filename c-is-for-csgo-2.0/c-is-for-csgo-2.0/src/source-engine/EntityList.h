@@ -11,7 +11,7 @@ typedef void* HEntity;
 /*
 * @return: Pointer to Source Engine EntityList interface
 */
-extern HInterface GetEntityList(void);
+extern inline HInterface GetEntityList(void);
 
 /*
  * @brief: Gets an entity from an index
