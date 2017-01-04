@@ -28,11 +28,24 @@ void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL f
 	}
 }
 
+WNDPROC origWindowProc = NULL;
+LRESULT CALLBACK HkWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    if (HandleMenuInput(msg, wParam, lParam))
+        return 1L;
+
+    return CallWindowProc(origWindowProc, hwnd, msg, wParam, lParam);
+}
+
 // ------------
 
 void Attach(void)
 {
     InitMenu();
+
+    HANDLE window = FindWindow(NULL, "Counter-Strike: Global Offensive");
+    origWindowProc = (WNDPROC)GetWindowLongPtr(window, GWLP_WNDPROC);
+    SetWindowLongPtr(window, GWLP_WNDPROC, (LONG)HkWindowProc);
 
 	InitVirtualTableHook(GetPanel());
 	OrigPaintTraverse = HookVirtualTableFunction(GetPanel(), 41, HkPaintTraverse);
@@ -43,6 +56,9 @@ void Detach(void)
 	UninitVirtualTableHook(GetPanel());
 
     UninitMenu();
+
+    HANDLE window = FindWindow(NULL, "Counter-Strike: Global Offensive");
+    SetWindowLongPtr(window, GWLP_WNDPROC, (LONG)origWindowProc);
 
 	FreeConsole();
 }

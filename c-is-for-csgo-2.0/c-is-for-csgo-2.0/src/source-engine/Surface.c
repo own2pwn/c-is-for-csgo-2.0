@@ -61,7 +61,7 @@ BOOL Surface_SetFontGlyphSet(HFont font, const char *windowsFontName, int tall, 
 
     HInterface surface = GetSurface();
 
-	SetFontGlyphSetFn setFontGlyphSet = GetVirtualFunction(surface, 71);
+	SetFontGlyphSetFn setFontGlyphSet = GetVirtualFunction(surface, 72);
 	return setFontGlyphSet(surface, NULL, font, windowsFontName, tall, weight, blur, scanlines, flags, rangeMin, rangeMax);
 }
 
@@ -121,6 +121,6 @@ HFont Surface_CreateFont(void)
 
     HInterface surface = GetSurface();
 
-	CreateFontFn createFont = GetVirtualFunction(surface, 70);
+	CreateFontFn createFont = GetVirtualFunction(surface, 71);
 	return createFont(surface, NULL);
 }
