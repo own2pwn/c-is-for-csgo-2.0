@@ -9,15 +9,25 @@
 #include "menu/Menu.h"
 #include <Windows.h>
 
-// Tests for now
-
+/*
+ * @brief: Typedefs of functions that we hook
+ */
 typedef void(__fastcall *PaintTraverseFn)(void*, void*, VPANEL, BOOL, BOOL);
+typedef void(__fastcall *OnScreenSizeChangedFn)(void*, void*, int, int);
 
-PaintTraverseFn OrigPaintTraverse = NULL;
+/*
+ * @brief: The originals of functions that we hook
+ */
+PaintTraverseFn origPaintTraverse = NULL;
+OnScreenSizeChangedFn origOnScreenSizeChanged = NULL;
+WNDPROC origWindowProc = NULL;
 
+/*
+ * @brief: PaintTraverse hook, everything is drawn here
+ */
 void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL forceRepaint, BOOL allowForce)
 {
-	OrigPaintTraverse(panel, edx, vguiPanel, forceRepaint, allowForce);
+	origPaintTraverse(panel, edx, vguiPanel, forceRepaint, allowForce);
 
 	static VPANEL drawPanel = 0;
 	if (!drawPanel && strcmp(Panel_GetName(vguiPanel), "MatSystemTopPanel") == 0) {
@@ -28,41 +38,91 @@ void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL f
 	}
 }
 
-WNDPROC origWindowProc = NULL;
+/*
+ * @brief: OnScreenSizeChanged hook
+ */
+void __fastcall HkOnScreenSizeChanged(void *surface, void *edx, int oldWidth, int oldHeight)
+{
+    origOnScreenSizeChanged(surface, edx, oldWidth, oldHeight);
+
+    MenuOnWindowResize();
+}
+
+/*
+ * @brief: Window procedure hook
+ */
 LRESULT CALLBACK HkWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    if (HandleMenuInput(msg, wParam, lParam))
+    if (MenuOnWindowProc(msg, wParam, lParam))
         return 1L;
 
     return CallWindowProc(origWindowProc, hwnd, msg, wParam, lParam);
 }
 
-// ------------
+/* 
+ * @brief: Gets the game window
+ */
+HANDLE GetGameWindow()
+{
+    static HANDLE gameWindow = NULL;
+    if (!gameWindow) {
+        gameWindow = FindWindow("Valve001", NULL);
+    }
 
+    return gameWindow;
+}
+
+/*
+ * @brief: Initializes all the hooks
+ */
+void InitHooks()
+{
+    InitVirtualTableHook(GetPanel());
+    InitVirtualTableHook(GetSurface());
+
+    origPaintTraverse = HookVirtualTableFunction(GetPanel(), 41, &HkPaintTraverse);
+    origOnScreenSizeChanged = HookVirtualTableFunction(GetSurface(), 116, &HkOnScreenSizeChanged);
+
+    // Window proc hook
+    origWindowProc = (WNDPROC)GetWindowLongPtr(GetGameWindow(), GWLP_WNDPROC);
+    SetWindowLongPtr(GetGameWindow(), GWLP_WNDPROC, (LONG)HkWindowProc);
+}
+
+/*
+ * @brief: Uninitializes all the hooks
+ */
+void UninitHooks()
+{
+    SetWindowLongPtr(GetGameWindow(), GWLP_WNDPROC, (LONG)origWindowProc);
+
+    UninitVirtualTableHook(GetSurface());
+    UninitVirtualTableHook(GetPanel());
+}
+
+/*
+ * @brief: Handles attaching, everything should be initialized here
+ */
 void Attach(void)
 {
     InitMenu();
-
-    HANDLE window = FindWindow(NULL, "Counter-Strike: Global Offensive");
-    origWindowProc = (WNDPROC)GetWindowLongPtr(window, GWLP_WNDPROC);
-    SetWindowLongPtr(window, GWLP_WNDPROC, (LONG)HkWindowProc);
-
-	InitVirtualTableHook(GetPanel());
-	OrigPaintTraverse = HookVirtualTableFunction(GetPanel(), 41, HkPaintTraverse);
+    InitHooks();
 }
 
+/*
+ * @brief: Handles detaching, everything should uninitialized here
+ */
 void Detach(void)
 {
-	UninitVirtualTableHook(GetPanel());
-
+    UninitHooks();
     UninitMenu();
-
-    HANDLE window = FindWindow(NULL, "Counter-Strike: Global Offensive");
-    SetWindowLongPtr(window, GWLP_WNDPROC, (LONG)origWindowProc);
 
 	FreeConsole();
 }
 
+/*
+ * @brief: Handles panic button
+ * @todo(szwagi): should be deleted later
+ */
 void KeyThread(HINSTANCE instance)
 {
 	while (!GetAsyncKeyState(VK_F11))
@@ -71,6 +131,10 @@ void KeyThread(HINSTANCE instance)
 	FreeLibraryAndExitThread(instance, 0);
 }
 
+/*
+ * @brief: Handles the module entry
+ * @return: Weather it succeeded or not
+ */
 BOOL WINAPI DllMain(HINSTANCE instance, DWORD reason, LPVOID reserved)
 {
 	switch(reason) {

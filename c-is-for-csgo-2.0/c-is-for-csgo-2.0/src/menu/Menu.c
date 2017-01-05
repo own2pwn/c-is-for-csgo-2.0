@@ -30,12 +30,6 @@ void InitMenu(void)
 {
     menuFont = Surface_CreateFont();
     Surface_SetFontGlyphSet(menuFont, "Tahoma", 13, 400, 0, 0, FONTFLAG_OUTLINE, 0, 0);
-
-    AddMenuBooleanNode(L"Hey I'm first");
-    AddMenuBooleanNode(L"I'm second");
-    AddMenuBooleanNode(L"Hi mom");
-    AddMenuBooleanNode(L"hi dad");
-    AddMenuNode(L"I'm bigger", 0.0f, 2.0f, 0.1f);
 }
 
 void UninitMenu(void)
@@ -50,7 +44,7 @@ void UninitMenu(void)
     }
 }
 
-void AddMenuNode(wchar_t *text, float minValue, float maxValue, float stepValue)
+MenuNode *AddMenuNode(wchar_t *text, float minValue, float maxValue, float stepValue)
 {
     MenuNode *link = malloc(sizeof(MenuNode));
     ZeroMemory(link, sizeof(MenuNode));
@@ -70,11 +64,13 @@ void AddMenuNode(wchar_t *text, float minValue, float maxValue, float stepValue)
 
     menuFrontNode = link;
     menuSelectedNode = menuFrontNode;
+
+    return link;
 }
 
-void AddMenuBooleanNode(wchar_t *text)
+MenuNode *AddMenuBooleanNode(wchar_t *text)
 {
-    AddMenuNode(text, 0.0f, 1.0f, 1.0f);
+    return AddMenuNode(text, 0.0f, 1.0f, 1.0f);
 }
 
 void PaintMenu(void)
@@ -88,8 +84,8 @@ void PaintMenu(void)
 
     MenuNode *node = menuFrontNode;
     while (node != NULL) {
-        wchar_t valueString[16];
-        swprintf(valueString, sizeof(valueString), L"%.2f", node->value, node->text);
+        wchar_t valueString[8];
+        swprintf(valueString, sizeof(valueString) / sizeof(wchar_t), L"%.2f", node->value);
 
         if (node == menuSelectedNode) {
             Surface_DrawSetTextColor(255, 128, 128, 255);
@@ -109,7 +105,7 @@ void PaintMenu(void)
     }
 }
 
-BOOL HandleMenuInput(UINT msg, WPARAM wParam, LPARAM lParam)
+BOOL MenuOnWindowProc(UINT msg, WPARAM wParam, LPARAM lParam)
 {
     if (!menuSelectedNode)
         return FALSE;
@@ -148,4 +144,14 @@ BOOL HandleMenuInput(UINT msg, WPARAM wParam, LPARAM lParam)
     }
 
     return FALSE;
+}
+
+void MenuOnWindowResize(void)
+{
+    Surface_SetFontGlyphSet(menuFont, "Tahoma", 13, 400, 0, 0, FONTFLAG_OUTLINE, 0, 0);
+}
+
+BOOL GetMenuBooleanValue(MenuNode *node)
+{
+    return node->value != 0.0f;
 }
