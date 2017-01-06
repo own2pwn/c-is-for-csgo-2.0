@@ -121,6 +121,7 @@
     <ClCompile Include="src\VirtualTableHook.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\DllMain.h" />
     <ClInclude Include="src\menu\Menu.h" />
     <ClInclude Include="src\source-engine\EntityList.h" />
     <ClInclude Include="src\source-engine\Interface.h" />

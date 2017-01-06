@@ -2,29 +2,13 @@
    Creator: Szwagi
    Notice: Copyright (C) 2017. All Rights Reserved.
    =============================================== */
-   
+
+#include "DllMain.h"
 #include "VirtualTableHook.h"
 #include "source-engine/Surface.h"
-#include "source-engine/Panel.h"
+#include "source-engine/EntityList.h"
 #include "menu/Menu.h"
-#include <Windows.h>
 
-/*
- * @brief: Typedefs of functions that we hook
- */
-typedef void(__fastcall *PaintTraverseFn)(void*, void*, VPANEL, BOOL, BOOL);
-typedef void(__fastcall *OnScreenSizeChangedFn)(void*, void*, int, int);
-
-/*
- * @brief: The originals of functions that we hook
- */
-PaintTraverseFn origPaintTraverse = NULL;
-OnScreenSizeChangedFn origOnScreenSizeChanged = NULL;
-WNDPROC origWindowProc = NULL;
-
-/*
- * @brief: PaintTraverse hook, everything is drawn here
- */
 void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL forceRepaint, BOOL allowForce)
 {
 	origPaintTraverse(panel, edx, vguiPanel, forceRepaint, allowForce);
@@ -34,13 +18,11 @@ void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL f
         drawPanel = vguiPanel;
 	}
 	else if (vguiPanel == drawPanel) {
+        PaintVisuals();
         PaintMenu();
 	}
 }
 
-/*
- * @brief: OnScreenSizeChanged hook
- */
 void __fastcall HkOnScreenSizeChanged(void *surface, void *edx, int oldWidth, int oldHeight)
 {
     origOnScreenSizeChanged(surface, edx, oldWidth, oldHeight);
@@ -48,21 +30,29 @@ void __fastcall HkOnScreenSizeChanged(void *surface, void *edx, int oldWidth, in
     MenuOnWindowResize();
 }
 
-/*
- * @brief: Window procedure hook
- */
 LRESULT CALLBACK HkWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    if (MenuOnWindowProc(msg, wParam, lParam))
+    if (MenuOnWindowProc(msg, wParam, lParam)) {
         return 1L;
+    }
 
     return CallWindowProc(origWindowProc, hwnd, msg, wParam, lParam);
 }
 
-/* 
- * @brief: Gets the game window
- */
-HANDLE GetGameWindow()
+void PaintVisuals(void)
+{
+    for(int i = 0; i < 1000; ++i) {
+        HEntity ent = EntityList_GetEntity(i);
+        //if (IsDormant(ent)) {
+        //    continue;
+        //}
+        //if (GetHealth(ent) <= 0) {
+        //    continue;
+        //}
+    }
+}
+
+HANDLE GetGameWindow(void)
 {
     static HANDLE gameWindow = NULL;
     if (!gameWindow) {
@@ -72,10 +62,7 @@ HANDLE GetGameWindow()
     return gameWindow;
 }
 
-/*
- * @brief: Initializes all the hooks
- */
-void InitHooks()
+void InitHooks(void)
 {
     InitVirtualTableHook(GetPanel());
     InitVirtualTableHook(GetSurface());
@@ -88,10 +75,7 @@ void InitHooks()
     SetWindowLongPtr(GetGameWindow(), GWLP_WNDPROC, (LONG)HkWindowProc);
 }
 
-/*
- * @brief: Uninitializes all the hooks
- */
-void UninitHooks()
+void UninitHooks(void)
 {
     SetWindowLongPtr(GetGameWindow(), GWLP_WNDPROC, (LONG)origWindowProc);
 
@@ -99,18 +83,12 @@ void UninitHooks()
     UninitVirtualTableHook(GetPanel());
 }
 
-/*
- * @brief: Handles attaching, everything should be initialized here
- */
 void Attach(void)
 {
     InitMenu();
     InitHooks();
 }
 
-/*
- * @brief: Handles detaching, everything should uninitialized here
- */
 void Detach(void)
 {
     UninitHooks();
@@ -119,27 +97,19 @@ void Detach(void)
 	FreeConsole();
 }
 
-/*
- * @brief: Handles panic button
- * @todo(szwagi): should be deleted later
- */
 void KeyThread(HINSTANCE instance)
 {
-	while (!GetAsyncKeyState(VK_F11))
-		Sleep(50);
+    while (!GetAsyncKeyState(VK_F11)) {
+        Sleep(50);
+    }
 
 	FreeLibraryAndExitThread(instance, 0);
 }
 
-/*
- * @brief: Handles the module entry
- * @return: Weather it succeeded or not
- */
 BOOL WINAPI DllMain(HINSTANCE instance, DWORD reason, LPVOID reserved)
 {
 	switch(reason) {
-	case DLL_PROCESS_ATTACH:
-    {
+	case DLL_PROCESS_ATTACH: {
 		AllocConsole();
 
 		FILE* stream;
@@ -148,12 +118,15 @@ BOOL WINAPI DllMain(HINSTANCE instance, DWORD reason, LPVOID reserved)
 		Attach();
 
 		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)KeyThread, instance, 0, NULL);
-	} break;
-	case DLL_PROCESS_DETACH:
-	{
+        break;
+	}
+	case DLL_PROCESS_DETACH: {
 		Detach();
-	} break;
-	default: break;
+        break;
+	} 
+	default: {
+        break;
+    }
 	}
 	return TRUE;
 }

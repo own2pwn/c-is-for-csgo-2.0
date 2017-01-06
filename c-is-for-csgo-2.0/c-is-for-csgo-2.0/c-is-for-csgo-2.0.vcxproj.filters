@@ -56,6 +56,9 @@
     <ClInclude Include="src\menu\Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\DllMain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="c-is-for-csgo-2.0.licenseheader" />
