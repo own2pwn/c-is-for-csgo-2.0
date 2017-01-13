@@ -16,4 +16,9 @@ extern inline HInterface GetEntityList(void);
  * @brief: Gets an entity from an index
  * @return: Pointer to entity at given index
  */
-extern HEntity GetEntity(int index);
+extern HEntity GetClientEntity(int index);
+
+/*
+ * @return: Highest entity index used
+ */
+extern int GetHighestEntityIndex(void);

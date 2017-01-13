@@ -16,12 +16,22 @@ inline HInterface GetEntityList(void)
     return entityList;
 }
 
-HEntity GetEntity(int index)
+HEntity GetClientEntity(int index)
 {
-    typedef HEntity(__fastcall *GetEntityFn)(HInterface, void*, int);
+    typedef HEntity(__fastcall *GetClientEntityFn)(HInterface, void*, int);
 
     HInterface entityList = GetEntityList();
 
-    GetEntityFn getEntity = GetVirtualFunction(entityList, 3);
-    return getEntity(entityList, NULL, index);
+    GetClientEntityFn getClientEntity = GetVirtualFunction(entityList, 3);
+    return getClientEntity(entityList, NULL, index);
+}
+
+int GetHighestEntityIndex(void)
+{
+    typedef int(__fastcall *GetHighestEntityIndexFn)(HInterface);
+
+    HInterface entityList = GetEntityList();
+
+    GetHighestEntityIndexFn getHighestEntityIndex = GetVirtualFunction(entityList, 6);
+    return getHighestEntityIndex(entityList);
 }

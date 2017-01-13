@@ -23,8 +23,6 @@ void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL f
 	else if (vguiPanel == drawPanel) {
         PaintVisuals();
         PaintMenu();
-
-        
 	}
 }
 
@@ -46,8 +44,9 @@ LRESULT CALLBACK HkWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 void PaintVisuals(void)
 {
-    for(int i = 0; i < 512; ++i) {
-        HEntity ent = GetEntity(i);
+    int highestEntityIndex = GetHighestEntityIndex();
+    for (int i = 0; i < highestEntityIndex; ++i) {
+        HEntity ent = GetClientEntity(i);
         if (!ent) {
             continue;
         }
