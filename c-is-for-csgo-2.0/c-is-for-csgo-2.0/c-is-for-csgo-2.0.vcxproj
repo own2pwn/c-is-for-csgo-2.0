@@ -114,6 +114,8 @@
   <ItemGroup>
     <ClCompile Include="src\DllMain.c" />
     <ClCompile Include="src\menu\Menu.c" />
+    <ClCompile Include="src\source-engine\BasePlayer.c" />
+    <ClCompile Include="src\source-engine\Entity.c" />
     <ClCompile Include="src\source-engine\EntityList.c" />
     <ClCompile Include="src\source-engine\Interface.c" />
     <ClCompile Include="src\source-engine\Panel.c" />
@@ -123,6 +125,9 @@
   <ItemGroup>
     <ClInclude Include="src\DllMain.h" />
     <ClInclude Include="src\menu\Menu.h" />
+    <ClInclude Include="src\source-engine\BasePlayer.h" />
+    <ClInclude Include="src\source-engine\ClassIds.h" />
+    <ClInclude Include="src\source-engine\Entity.h" />
     <ClInclude Include="src\source-engine\EntityList.h" />
     <ClInclude Include="src\source-engine\Interface.h" />
     <ClInclude Include="src\source-engine\Panel.h" />

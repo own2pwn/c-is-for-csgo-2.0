@@ -5,21 +5,26 @@
 
 #include "DllMain.h"
 #include "VirtualTableHook.h"
+#include "menu/Menu.h"
 #include "source-engine/Surface.h"
 #include "source-engine/EntityList.h"
-#include "menu/Menu.h"
+#include "source-engine/Entity.h"
+#include "source-engine/BasePlayer.h"
+#include "source-engine/ClassIds.h"
 
 void __fastcall HkPaintTraverse(void* panel, void* edx, VPANEL vguiPanel, BOOL forceRepaint, BOOL allowForce)
 {
 	origPaintTraverse(panel, edx, vguiPanel, forceRepaint, allowForce);
 
 	static VPANEL drawPanel = 0;
-	if (!drawPanel && strcmp(Panel_GetName(vguiPanel), "MatSystemTopPanel") == 0) {
+	if (!drawPanel && strcmp(GetName(vguiPanel), "MatSystemTopPanel") == 0) {
         drawPanel = vguiPanel;
 	}
 	else if (vguiPanel == drawPanel) {
         PaintVisuals();
         PaintMenu();
+
+        
 	}
 }
 
@@ -41,14 +46,22 @@ LRESULT CALLBACK HkWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 void PaintVisuals(void)
 {
-    for(int i = 0; i < 1000; ++i) {
-        HEntity ent = EntityList_GetEntity(i);
-        //if (IsDormant(ent)) {
-        //    continue;
-        //}
-        //if (GetHealth(ent) <= 0) {
-        //    continue;
-        //}
+    for(int i = 0; i < 512; ++i) {
+        HEntity ent = GetEntity(i);
+        if (!ent) {
+            continue;
+        }
+
+        if (IsDormant(ent)) {
+            continue;
+        }
+        
+        if (GetClassId(ent) == CLASSID_CSPLAYER) {
+            if (GetHealth(ent) <= 0) {
+                continue;
+            }
+
+        }
     }
 }
 

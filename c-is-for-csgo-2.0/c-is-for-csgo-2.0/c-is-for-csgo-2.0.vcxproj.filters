@@ -36,6 +36,12 @@
     <ClCompile Include="src\menu\Menu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\source-engine\Entity.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source-engine\BasePlayer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\source-engine\Surface.h">
@@ -57,6 +63,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\DllMain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source-engine\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source-engine\BasePlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\source-engine\ClassIds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

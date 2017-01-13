@@ -16,4 +16,4 @@ extern inline HInterface GetPanel(void);
 /*
  * @return: Name of the given panel
  */
-extern const char *Panel_GetName(VPANEL vpanel);
+extern const char *GetName(VPANEL vpanel);

@@ -15,7 +15,7 @@ inline HInterface GetSurface(void)
 	return surface;
 }
 
-void Surface_DrawSetColor(int r, int g, int b, int a)
+void DrawSetColor(int r, int g, int b, int a)
 {
 	typedef void(__fastcall *DrawSetColorFn)(HInterface, void*, int, int, int, int);
 
@@ -25,7 +25,7 @@ void Surface_DrawSetColor(int r, int g, int b, int a)
 	drawSetColor(surface, NULL, r, g, b, a);
 }
 
-void Surface_DrawSetTextColor(int r, int g, int b, int a)
+void DrawSetTextColor(int r, int g, int b, int a)
 {
 	typedef void(__fastcall *DrawSetTextColorFn)(HInterface, void*, int, int, int, int);
 
@@ -35,7 +35,7 @@ void Surface_DrawSetTextColor(int r, int g, int b, int a)
 	drawSetTextColor(surface, NULL, r, g, b, a);
 }
 																																										 
-void Surface_DrawSetTextFont(HFont font)
+void DrawSetTextFont(HFont font)
 {
 	typedef void(__fastcall *DrawSetTextFontFn)(HInterface, void*, HFont);
 
@@ -45,7 +45,7 @@ void Surface_DrawSetTextFont(HFont font)
 	drawSetTextFont(surface, NULL, font);
 }
 
-void Surface_DrawSetTextPos(int x, int y)
+void DrawSetTextPos(int x, int y)
 {
 	typedef void(__fastcall *DrawSetTextPosFn)(HInterface, void*, int, int);
 
@@ -55,7 +55,7 @@ void Surface_DrawSetTextPos(int x, int y)
 	drawSetTextPos(surface, NULL, x, y);
 }
 
-BOOL Surface_SetFontGlyphSet(HFont font, const char *windowsFontName, int tall, int weight, int blur, int scanlines, int flags, int rangeMin, int rangeMax)
+BOOL SetFontGlyphSet(HFont font, const char *windowsFontName, int tall, int weight, int blur, int scanlines, int flags, int rangeMin, int rangeMax)
 {
 	typedef BOOL(__fastcall *SetFontGlyphSetFn)(HInterface, void*, HFont, const char*, int, int, int, int, int, int, int);
 
@@ -65,7 +65,7 @@ BOOL Surface_SetFontGlyphSet(HFont font, const char *windowsFontName, int tall, 
 	return setFontGlyphSet(surface, NULL, font, windowsFontName, tall, weight, blur, scanlines, flags, rangeMin, rangeMax);
 }
 
-void Surface_DrawFilledRect(int x0, int y0, int x1, int y1)
+void DrawFilledRect(int x0, int y0, int x1, int y1)
 {
 	typedef void(__fastcall *DrawFilledRectFn)(HInterface, void*, int, int, int, int);
 
@@ -75,7 +75,7 @@ void Surface_DrawFilledRect(int x0, int y0, int x1, int y1)
 	drawFilledRect(surface, NULL, x0, y0, x1, y1);
 }
 
-void Surface_DrawOutlinedRect(int x0, int y0, int x1, int y1)
+void DrawOutlinedRect(int x0, int y0, int x1, int y1)
 {
 	typedef void(__fastcall *DrawOutlinedRectFn)(HInterface, void*, int, int, int, int);
 
@@ -85,7 +85,7 @@ void Surface_DrawOutlinedRect(int x0, int y0, int x1, int y1)
 	drawOutlinedRect(surface, NULL, x0, y0, x1, y1);
 }
 
-void Surface_DrawLine(int x0, int y0, int x1, int y1)
+void DrawLine(int x0, int y0, int x1, int y1)
 {
 	typedef void(__fastcall *DrawLineFn)(HInterface, void*, int, int, int, int);
 
@@ -95,7 +95,7 @@ void Surface_DrawLine(int x0, int y0, int x1, int y1)
 	drawLine(surface, NULL, x0, y0, x1, y1);
 }
 
-void Surface_DrawPrintText(const wchar_t *text, int textLength, FontDrawType_t drawType)
+void DrawPrintText(const wchar_t *text, int textLength, FontDrawType_t drawType)
 {
 	typedef void(__fastcall *DrawPrintTextFn)(HInterface, void*, const wchar_t*, int, FontDrawType_t);
 
@@ -105,7 +105,7 @@ void Surface_DrawPrintText(const wchar_t *text, int textLength, FontDrawType_t d
 	drawPrintText(surface, NULL, text, textLength, drawType);
 }
 																	
-void Surface_GetScreenSize(int *wide, int *tall)
+void GetScreenSize(int *wide, int *tall)
 {
 	typedef void(__fastcall *GetScreenSizeFn)(HInterface, void*, int*, int*);
 
@@ -115,7 +115,7 @@ void Surface_GetScreenSize(int *wide, int *tall)
 	getScreenSize(surface, NULL, wide, tall);
 }
 																														
-HFont Surface_CreateFont(void)
+HFont CreateFont(void)
 {
 	typedef HFont(__fastcall *CreateFontFn)(HInterface, void*);
 

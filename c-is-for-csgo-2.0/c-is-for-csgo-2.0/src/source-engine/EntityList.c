@@ -16,7 +16,7 @@ inline HInterface GetEntityList(void)
     return entityList;
 }
 
-HEntity EntityList_GetEntity(int index)
+HEntity GetEntity(int index)
 {
     typedef HEntity(__fastcall *GetEntityFn)(HInterface, void*, int);
 

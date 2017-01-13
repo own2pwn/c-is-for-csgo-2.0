@@ -28,8 +28,8 @@ MenuNode *menuSelectedNode = NULL;
 
 void InitMenu(void)
 {
-    menuFont = Surface_CreateFont();
-    Surface_SetFontGlyphSet(menuFont, "Tahoma", 13, 400, 0, 0, FONTFLAG_OUTLINE, 0, 0);
+    menuFont = CreateFont();
+    SetFontGlyphSet(menuFont, "Tahoma", 13, 400, 0, 0, FONTFLAG_OUTLINE, 0, 0);
 }
 
 void UninitMenu(void)
@@ -80,7 +80,7 @@ void PaintMenu(void)
 
     int y = 7;
 
-    Surface_DrawSetTextFont(menuFont);
+    DrawSetTextFont(menuFont);
 
     MenuNode *node = menuFrontNode;
     while (node != NULL) {
@@ -88,17 +88,17 @@ void PaintMenu(void)
         swprintf(valueString, sizeof(valueString) / sizeof(wchar_t), L"%.2f", node->value);
 
         if (node == menuSelectedNode) {
-            Surface_DrawSetTextColor(255, 128, 128, 255);
+            DrawSetTextColor(255, 128, 128, 255);
         }
         else {
-            Surface_DrawSetTextColor(255, 255, 255, 255);
+            DrawSetTextColor(255, 255, 255, 255);
         }
 
-        Surface_DrawSetTextPos(10, y);
-        Surface_DrawPrintText(valueString, wcslen(valueString), FONT_DRAW_DEFAULT);
+        DrawSetTextPos(10, y);
+        DrawPrintText(valueString, wcslen(valueString), FONT_DRAW_DEFAULT);
 
-        Surface_DrawSetTextPos(50, y);
-        Surface_DrawPrintText(node->text, wcslen(node->text), FONT_DRAW_DEFAULT);
+        DrawSetTextPos(50, y);
+        DrawPrintText(node->text, wcslen(node->text), FONT_DRAW_DEFAULT);
 
         y += 15;
         node = node->next;
@@ -148,7 +148,7 @@ BOOL MenuOnWindowProc(UINT msg, WPARAM wParam, LPARAM lParam)
 
 void MenuOnWindowResize(void)
 {
-    Surface_SetFontGlyphSet(menuFont, "Tahoma", 13, 400, 0, 0, FONTFLAG_OUTLINE, 0, 0);
+    SetFontGlyphSet(menuFont, "Tahoma", 13, 400, 0, 0, FONTFLAG_OUTLINE, 0, 0);
 }
 
 BOOL GetMenuBooleanValue(MenuNode *node)

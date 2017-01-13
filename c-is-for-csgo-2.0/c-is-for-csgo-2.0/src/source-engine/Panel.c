@@ -16,7 +16,7 @@ inline HInterface GetPanel(void)
     return panel;
 }
 
-const char *Panel_GetName(VPANEL vpanel)
+const char *GetName(VPANEL vpanel)
 {
     typedef const char*(__fastcall *GetNameFn)(HInterface, void*, VPANEL);
 
